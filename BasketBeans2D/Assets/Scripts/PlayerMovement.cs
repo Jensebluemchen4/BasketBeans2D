@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float radiusCheck;
 
+    Vector3 mousePosition;
+    bool lookRight;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,6 +28,16 @@ public class PlayerMovement : MonoBehaviour
         {
                 rb.velocity = Vector2.up * jumpForce;
         }
+        FollowMouse();
+        
+        if(lookRight == true && rb.position.x < mousePosition.x)
+        {
+            Flip();
+        }
+        else if(lookRight == false && rb.position.x > mousePosition.x)
+        {
+            Flip();
+        }
     }
 
     void FixedUpdate()
@@ -34,4 +47,17 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
     }
 
+    void FollowMouse()
+    {
+        mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+    }
+
+    void Flip()
+    {
+        lookRight = !lookRight;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
+    }
 }
