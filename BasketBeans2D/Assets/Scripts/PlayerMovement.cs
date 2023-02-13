@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (onGround == true && Input.GetKeyDown(KeyCode.UpArrow))
+        if (onGround == true && Input.GetButtonDown("Jump"))
         {
                 rb.velocity = Vector2.up * jumpForce;
         }
