@@ -1,46 +1,76 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class pickUp : MonoBehaviour
 {
-    private int layerIndex;
-    [SerializeField]private float distance;
-    [SerializeField] private Transform ray;
+    [SerializeField] private float distance;
     [SerializeField] private Transform hold;
+    [SerializeField] private GameObject ball;
+    [SerializeField] private Rigidbody2D ballrb;
+    private bool inHand = false;
+    private float maxDist = 3f;
+    private float throwForce = 25f;
+    private float maxRadius = 10f;
     
-    private GameObject pickedUpObject;
 
-    private void Awake()
-    {
-        layerIndex = LayerMask.NameToLayer("Objects");
-    }
-
+    Vector3 mousePosition;
 
     void Update()
     {
+        FollowMouse();
 
-        RaycastHit2D isHit = Physics2D.Raycast(ray.position, transform.right, distance);
+        Physics2D.IgnoreLayerCollision(0, 3);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && pickedUpObject == null)
+        //Check Distance between ball and player
+        float distance = Vector2.Distance(ball.transform.position, transform.position);
+
+        Vector3 throwDir = mousePosition - transform.position;
+
+        //Check if ball is not in hand and nearby
+        if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == false && distance <= maxDist)
         {
-            
-            pickedUpObject = isHit.collider.gameObject;
-            pickedUpObject.GetComponent<Rigidbody2D>().isKinematic = true;
-            pickedUpObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            pickedUpObject.GetComponent<Collider2D>().enabled = false;
-            pickedUpObject.transform.position = hold.position;
-            pickedUpObject.transform.SetParent(transform);
+            PickUp();
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0))
+        else if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == true)
         {
-            pickedUpObject.GetComponent<Rigidbody2D>().isKinematic = false;
-            pickedUpObject.transform.SetParent(null);
-            pickedUpObject.GetComponent<Collider2D>().enabled = true;
-            pickedUpObject = null;
+            Throw(throwDir);
         }
+    }
 
-        Debug.DrawRay(ray.position, transform.right * distance);
+    //Method to pick up ball
+    void PickUp()
+    {
+        ball.GetComponent<Rigidbody2D>().isKinematic = true;
+        ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+
+
+        //Move object to transform of object "hold" and set player to Parent
+        ball.transform.position = hold.position;
+        ball.transform.SetParent(transform);
+        ballrb.freezeRotation = true;
+
+        inHand = true;
+    }
+
+    //Method to throw ball
+    void Throw(Vector3 throwDir)
+    {
+        ball.GetComponent<Rigidbody2D>().isKinematic = false;
+        ball.transform.SetParent(null);
+
+        ballrb.AddForce(Vector3.ClampMagnitude((throwDir), maxRadius) * throwForce);
+
+        ballrb.freezeRotation = false;
+
+        inHand = false;
+    }
+
+    void FollowMouse()
+    {
+        mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
     }
 }
 
