@@ -4,43 +4,54 @@ using UnityEngine;
 
 public class pickUp : MonoBehaviour
 {
-    private int layerIndex;
-    [SerializeField]private float distance;
-    [SerializeField] private Transform ray;
-    [SerializeField] private Transform hold;
-    
-    private GameObject pickedUpObject;
 
-    private void Awake()
-    {
-        layerIndex = LayerMask.NameToLayer("Objects");
-    }
+    [SerializeField]private float distance;
+    [SerializeField] private Transform hold;
+    [SerializeField] private GameObject ball;
+    private bool inHand = false;
+    private float maxDist = 3f;
 
 
     void Update()
     {
+        Physics2D.IgnoreLayerCollision(0, 3);
 
-        RaycastHit2D isHit = Physics2D.Raycast(ray.position, transform.right, distance);
+        //Check Distance between ball and player
+        float distance = Vector2.Distance(ball.transform.position, transform.position);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && pickedUpObject == null)
+        //Check if ball is not in hand and nearby
+        if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == false && distance <= maxDist)
         {
-            
-            pickedUpObject = isHit.collider.gameObject;
-            pickedUpObject.GetComponent<Rigidbody2D>().isKinematic = true;
-            pickedUpObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            pickedUpObject.GetComponent<Collider2D>().enabled = false;
-            pickedUpObject.transform.position = hold.position;
-            pickedUpObject.transform.SetParent(transform);
+            PickUp();
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0))
+        else if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == true)
         {
-            pickedUpObject.GetComponent<Rigidbody2D>().isKinematic = false;
-            pickedUpObject.transform.SetParent(null);
-            pickedUpObject.GetComponent<Collider2D>().enabled = true;
-            pickedUpObject = null;
+            Throw();
         }
+    }
 
-        Debug.DrawRay(ray.position, transform.right * distance);
+    //Method to pick up ball
+    void PickUp()
+    {
+        ball.GetComponent<Rigidbody2D>().isKinematic = true;
+        ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        ball.GetComponent<Collider2D>().enabled = false;
+
+        //Move object to transform of object "hold" and set player to Parent
+        ball.transform.position = hold.position;
+        ball.transform.SetParent(transform);
+
+        inHand = true;
+    }
+
+    //Method to throw ball
+    void Throw()
+    {
+        ball.GetComponent<Rigidbody2D>().isKinematic = false;
+        ball.transform.SetParent(null);
+        ball.GetComponent<Collider2D>().enabled = true;
+
+        inHand = false;
     }
 }
 
