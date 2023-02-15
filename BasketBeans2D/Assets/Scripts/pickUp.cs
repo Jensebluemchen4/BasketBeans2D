@@ -5,16 +5,14 @@ using UnityEngine;
 
 public class pickUp : MonoBehaviour
 {
-    [SerializeField] private float distance;
     [SerializeField] private Transform hold;
     [SerializeField] private GameObject ball;
     [SerializeField] private Rigidbody2D ballrb;
+    [SerializeField] private float maxDist = 0.5f;
+    [SerializeField] private float throwForce = 25f;
     private bool inHand = false;
-    private float maxDist = 3f;
-    private float throwForce = 25f;
     private float maxRadius = 10f;
     
-
     Vector3 mousePosition;
 
     void Update()
