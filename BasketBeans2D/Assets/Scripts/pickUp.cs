@@ -8,10 +8,10 @@ public class pickUp : MonoBehaviour
     [SerializeField] private Transform hold;
     [SerializeField] private GameObject ball;
     [SerializeField] private Rigidbody2D ballrb;
-    [SerializeField] private float maxDist = 0.5f;
+    [SerializeField] private float maxMouseRadius = 10f;
+    [SerializeField] private float maxPickUpDist = 2f;
     [SerializeField] private float throwForce = 25f;
     private bool inHand = false;
-    private float maxRadius = 10f;
     
     Vector3 mousePosition;
 
@@ -27,7 +27,7 @@ public class pickUp : MonoBehaviour
         Vector3 throwDir = mousePosition - transform.position;
 
         //Check if ball is not in hand and nearby
-        if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == false && distance <= maxDist)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == false && distance <= maxPickUpDist)
         {
             PickUp();
         }
@@ -58,7 +58,8 @@ public class pickUp : MonoBehaviour
         ball.GetComponent<Rigidbody2D>().isKinematic = false;
         ball.transform.SetParent(null);
 
-        ballrb.AddForce(Vector3.ClampMagnitude((throwDir), maxRadius) * throwForce);
+        ballrb.AddForce((Vector3.ClampMagnitude((throwDir), maxMouseRadius) * throwForce));
+        
 
         ballrb.freezeRotation = false;
 

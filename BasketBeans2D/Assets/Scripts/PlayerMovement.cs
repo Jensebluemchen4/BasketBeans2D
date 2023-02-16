@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float jumpForce;
-    public float moveSpeed;
+    private float moveSpeed;
+    public float sprint;
+    public float walk;
     private float moveInput;
     private Rigidbody2D rb;
 
@@ -24,24 +26,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (onGround == true && Input.GetButtonDown("Jump"))
-        {
-                rb.velocity = Vector2.up * jumpForce;
-        }
         FollowMouse();
-        
+        if (onGround == true && Input.GetButtonDown("Jump"))
+            rb.velocity = Vector2.up * jumpForce;
         if(lookRight == true && rb.position.x < mousePosition.x)
-        {
             Flip();
-        }
         else if(lookRight == false && rb.position.x > mousePosition.x)
-        {
             Flip();
-        }
     }
 
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            moveSpeed = sprint;
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            moveSpeed = walk;
+
         onGround = Physics2D.OverlapCircle(groundCheck.position, radiusCheck, isGround);
         moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
