@@ -37,13 +37,15 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-            moveSpeed = sprint;
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-            moveSpeed = walk;
 
         onGround = Physics2D.OverlapCircle(groundCheck.position, radiusCheck, isGround);
         moveInput = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetKey(KeyCode.LeftShift))
+            moveSpeed = sprint;
+        else
+            moveSpeed = walk;
+
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
     }
 
