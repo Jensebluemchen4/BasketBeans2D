@@ -12,6 +12,7 @@ public class PickUp : MonoBehaviour
     [SerializeField] private float maxPickUpDist = 2f;
     [SerializeField] private float throwForce = 25f;
     public bool inHand = false;
+    private float distance;
     
     Vector3 mousePosition;
 
@@ -29,7 +30,11 @@ public class PickUp : MonoBehaviour
         Physics2D.IgnoreLayerCollision(0, 3);
 
         //Check Distance between ball and player
-        float distance = Vector2.Distance(ball.transform.position, transform.position);
+        try
+        {
+            distance = Vector2.Distance(ball.transform.position, transform.position);
+        }
+        catch (Exception) { }
 
         Vector3 throwDir = mousePosition - transform.position;
 
@@ -66,8 +71,6 @@ public class PickUp : MonoBehaviour
         ball.transform.SetParent(null);
 
         ballrb.AddForce((Vector3.ClampMagnitude((throwDir), maxMouseRadius) * throwForce));
-        
-
         ballrb.freezeRotation = false;
 
         inHand = false;

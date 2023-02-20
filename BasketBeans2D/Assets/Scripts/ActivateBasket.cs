@@ -4,21 +4,30 @@ using UnityEngine;
 
 public class ActivateBasket : MonoBehaviour
 {
-    [SerializeField] private GameObject ball;
-    BasketHit hit;
+    [SerializeField] public Rigidbody2D ball;
+    public int scoreCounter;
+    private bool hitFromTop;
 
     private void Awake()
     {
+        scoreCounter = 0;
         ball.GetComponent<GameObject>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        hit.c.enabled = true;
+        if (ball.velocity.y < 0)
+        {
+            hitFromTop = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        hit.c.enabled = false;
+        if (ball.velocity.y < 0 && hitFromTop == true)
+        {
+            scoreCounter++;
+        }
+        hitFromTop = false;
     }
 }
