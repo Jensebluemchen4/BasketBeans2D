@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ignorePlayerCollision : MonoBehaviour
+public class IgnorePlayerCollision : MonoBehaviour
 {
     public Collider2D Player;
     public Collider2D other;
@@ -20,7 +20,5 @@ public class ignorePlayerCollision : MonoBehaviour
             Player = GetComponent<Collider2D>();
             other = GetComponent<Collider2D>();
         }
-
-
     }
 }

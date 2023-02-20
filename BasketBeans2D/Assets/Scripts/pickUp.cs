@@ -3,17 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pickUp : MonoBehaviour
+public class PickUp : MonoBehaviour
 {
     [SerializeField] private Transform hold;
-    [SerializeField] private GameObject ball;
+    public GameObject ball;
     [SerializeField] private Rigidbody2D ballrb;
     [SerializeField] private float maxMouseRadius = 10f;
     [SerializeField] private float maxPickUpDist = 2f;
     [SerializeField] private float throwForce = 25f;
-    private bool inHand = false;
+    public bool inHand = false;
     
     Vector3 mousePosition;
+
+    private void Start()
+    {
+        Hold();
+        inHand = true;
+    }
+
 
     void Update()
     {
@@ -29,7 +36,7 @@ public class pickUp : MonoBehaviour
         //Check if ball is not in hand and nearby
         if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == false && distance <= maxPickUpDist)
         {
-            PickUp();
+            Hold();
         }
         else if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == true)
         {
@@ -38,7 +45,7 @@ public class pickUp : MonoBehaviour
     }
 
     //Method to pick up ball
-    void PickUp()
+    void Hold()
     {
         ball.GetComponent<Rigidbody2D>().isKinematic = true;
         ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
