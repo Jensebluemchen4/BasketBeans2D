@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KillPlayer : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class KillPlayer : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            
+            SceneManager.LoadScene(1);
         }
     }
 }

@@ -27,13 +27,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        FollowMouse();
-        if (onGround == true && Input.GetButtonDown("Jump"))
-            rb.velocity = Vector2.up * jumpForce;
-        if(lookRight == true && rb.position.x < mousePosition.x)
-            Flip();
-        else if(lookRight == false && rb.position.x > mousePosition.x)
-            Flip();
+        if (Time.timeScale == 1)
+        {
+            FollowMouse();
+            if (onGround == true && Input.GetButtonDown("Jump"))
+                rb.velocity = Vector2.up * jumpForce;
+            if (lookRight == true && rb.position.x < mousePosition.x)
+                Flip();
+            else if (lookRight == false && rb.position.x > mousePosition.x)
+                Flip();
+        }
     }
 
     void FixedUpdate()

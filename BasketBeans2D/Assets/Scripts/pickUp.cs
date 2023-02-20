@@ -25,27 +25,30 @@ public class PickUp : MonoBehaviour
 
     void Update()
     {
-        FollowMouse();
-
-        Physics2D.IgnoreLayerCollision(0, 3);
-
-        //Check Distance between ball and player
-        try
+        if (Time.timeScale == 1)
         {
-            distance = Vector2.Distance(ball.transform.position, transform.position);
-        }
-        catch (Exception) { }
+            FollowMouse();
 
-        Vector3 throwDir = mousePosition - transform.position;
+            Physics2D.IgnoreLayerCollision(0, 3);
 
-        //Check if ball is not in hand and nearby
-        if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == false && distance <= maxPickUpDist)
-        {
-            Hold();
-        }
-        else if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == true)
-        {
-            Throw(throwDir);
+            //Check Distance between ball and player
+            try
+            {
+                distance = Vector2.Distance(ball.transform.position, transform.position);
+            }
+            catch (Exception) { }
+
+            Vector3 throwDir = mousePosition - transform.position;
+
+            //Check if ball is not in hand and nearby
+            if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == false && distance <= maxPickUpDist)
+            {
+                Hold();
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == true)
+            {
+                Throw(throwDir);
+            }
         }
     }
 
