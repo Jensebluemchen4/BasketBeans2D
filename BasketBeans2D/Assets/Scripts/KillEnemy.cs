@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class KillEnemy : MonoBehaviour
 {
-    public PickUp pu;
+    public PickUp puPlayer;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Enemy") && pu.inHand == false)
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
+            collision.rigidbody.gravityScale = 1;
+            Robot.alive = false;
         }
     }
 }

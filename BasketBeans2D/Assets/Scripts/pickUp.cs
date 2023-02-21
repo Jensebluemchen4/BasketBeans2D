@@ -11,15 +11,15 @@ public class PickUp : MonoBehaviour
     [SerializeField] private float maxMouseRadius = 10f;
     [SerializeField] private float maxPickUpDist = 2f;
     [SerializeField] private float throwForce = 25f;
-    public bool inHand = false;
+    public bool inHand = true;
     private float distance;
     
     Vector3 mousePosition;
 
-    private void Start()
+    private void Awake()
     {
+        if (inHand)
         Hold();
-        inHand = true;
     }
 
 
@@ -55,28 +55,33 @@ public class PickUp : MonoBehaviour
     //Method to pick up ball
     void Hold()
     {
-        ball.GetComponent<Rigidbody2D>().isKinematic = true;
-        ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-
-
-        //Move object to transform of object "hold" and set player to Parent
-        ball.transform.position = hold.position;
-        ball.transform.SetParent(transform);
-        ballrb.freezeRotation = true;
-
-        inHand = true;
+        try
+        {
+            ball.GetComponent<Rigidbody2D>().isKinematic = true;
+            ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            //Move object to transform of object "hold" and set player to Parent
+            ball.transform.position = hold.position;
+            ball.transform.SetParent(transform);
+            ballrb.freezeRotation = true;
+            inHand = true;
+        }
+        catch (Exception) { }
     }
 
     //Method to throw ball
     void Throw(Vector3 throwDir)
     {
-        ball.GetComponent<Rigidbody2D>().isKinematic = false;
-        ball.transform.SetParent(null);
+        try
+        {
+            ball.GetComponent<Rigidbody2D>().isKinematic = false;
+            ball.transform.SetParent(null);
 
-        ballrb.AddForce((Vector3.ClampMagnitude((throwDir), maxMouseRadius) * throwForce));
-        ballrb.freezeRotation = false;
+            ballrb.AddForce((Vector3.ClampMagnitude((throwDir), maxMouseRadius) * throwForce));
+            ballrb.freezeRotation = false;
 
-        inHand = false;
+            inHand = false;
+        }
+        catch (Exception) { }
     }
 
     void FollowMouse()
