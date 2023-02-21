@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 319747344455513073}
   - component: {fileID: 319747344455513070}
   - component: {fileID: 1793700409}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Robot_Prefab
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -51,6 +51,7 @@ MonoBehaviour:
   speed: 3
   left: 1
   right: 4
+  alive: 1
 --- !u!70 &319747344455513070
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -81,13 +82,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 0.5
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &319747344617969021
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 319747344617969020}
   - component: {fileID: 319747344617969023}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Robot_Hands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 319747346295789298}
   - component: {fileID: 319747346295789301}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Robot_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

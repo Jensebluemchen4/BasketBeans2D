@@ -5,19 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class Port : MonoBehaviour
 {
+    public bool toRemove = false;
     public PickUp inHand;
     [SerializeField]private int toLoad;
 
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Objects"))
+        if (toRemove == false)
         {
-            Destroy(collision.gameObject);
-        }
+            if (collision.CompareTag("Objects"))
+            {
+                Destroy(collision.gameObject);
+            }
 
-        if (collision.CompareTag("Player"))
+            if (collision.CompareTag("Player"))
+            {
+                SceneManager.LoadScene(toLoad);
+            }
+        }
+        else
         {
-            SceneManager.LoadScene(toLoad);
+            StartCoroutine(DestroyPortal());
         }
     }
+
+    IEnumerator DestroyPortal()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
+    }
+
 }

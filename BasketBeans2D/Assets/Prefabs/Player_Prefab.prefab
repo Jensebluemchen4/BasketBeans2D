@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 6557988387764834022}
   - component: {fileID: 6557988387764834017}
   - component: {fileID: 6557988387764834016}
+  - component: {fileID: 1952998277}
   m_Layer: 3
   m_Name: Player_Prefab
   m_TagString: Player
@@ -360,6 +361,7 @@ MonoBehaviour:
     m_Bits: 1024
   groundCheck: {fileID: 6557988386860807788}
   radiusCheck: 0.2
+  mousePosition: {x: 0, y: 0, z: 0}
 --- !u!50 &6557988387764834022
 Rigidbody2D:
   serializedVersion: 4
@@ -396,10 +398,12 @@ MonoBehaviour:
   hold: {fileID: 6557988386337993637}
   ball: {fileID: 0}
   ballrb: {fileID: 0}
-  maxMouseRadius: 5
   maxPickUpDist: 2
-  throwForce: 65
-  inHand: 0
+  throwForce: 32.5
+  maxMouseRadius: 8
+  mouseRadius: 0
+  inHand: 1
+  pm: {fileID: 6557988387764834026}
 --- !u!61 &6557988387764834016
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -426,6 +430,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0295377, y: 0.72818947}
   m_EdgeRadius: 0
+--- !u!114 &1952998277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557988387764834027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b4054a4e934644cbdcebc63b436e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6557988387768526647
 GameObject:
   m_ObjectHideFlags: 0

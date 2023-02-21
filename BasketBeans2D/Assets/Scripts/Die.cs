@@ -9,7 +9,10 @@ public class Die : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (collision.GetComponent<Robot>().alive == true)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
     }
 }

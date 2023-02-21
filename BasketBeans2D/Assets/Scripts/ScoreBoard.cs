@@ -7,7 +7,7 @@ using TMPro;
 public class ScoreBoard : MonoBehaviour
 {
     public TMP_Text num;
-    public ActivateBasket score;
+    public Basket score;
 
     public void Update()
     {

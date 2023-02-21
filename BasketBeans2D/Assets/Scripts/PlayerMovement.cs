@@ -17,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public float radiusCheck;
     
 
-    Vector3 mousePosition;
-    bool lookRight;
+    public Vector3 mousePosition;
+    bool lookLeft;
 
     void Awake()
     {
@@ -32,9 +32,9 @@ public class PlayerMovement : MonoBehaviour
             FollowMouse();
             if (onGround == true && Input.GetButtonDown("Jump"))
                 rb.velocity = Vector2.up * jumpForce;
-            if (lookRight == true && rb.position.x < mousePosition.x)
+            if (lookLeft == true && mousePosition.x > 0)
                 Flip();
-            else if (lookRight == false && rb.position.x > mousePosition.x)
+            else if (lookLeft == false && mousePosition.x < 0)
                 Flip();
         }
     }
@@ -53,15 +53,15 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
     }
 
-    void FollowMouse()
+    public void FollowMouse()
     {
         mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        mousePosition = (Camera.main.ScreenToWorldPoint(mousePosition) - transform.position);
     }
 
     void Flip()
     {
-        lookRight = !lookRight;
+        lookLeft = !lookLeft;
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;

@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    
     [SerializeField] private float speed = 3f;
     [SerializeField] private float left = 0f;
     [SerializeField] private float right = 0f;
-    public static bool alive = true;
+    private Rigidbody2D rob;
+    public PickUp playerHand;
+    public bool alive = true;
     bool lookRight = true;
     float robotStartPosition;
 
     private void Awake()
     {
+        rob = GetComponent<Rigidbody2D>();
+        playerHand = GameObject.Find("Player").GetComponent<PickUp>();
         robotStartPosition = transform.position.x;
     }
 
@@ -41,17 +44,27 @@ public class Robot : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((collision.gameObject.CompareTag("Objects") && playerHand.inHand == false) || collision.gameObject.CompareTag("Enemy"))
+        {
+            rob.freezeRotation = false;
+            rob.gravityScale = 1.5f;
+            alive = false;
+        }
+    }
+
+    IEnumerator DestroyAfterTime()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
+    }
+
     public void Flip()
     {
         lookRight = !lookRight;
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
-    }
-
-    IEnumerator DestroyAfterTime()
-    {
-        yield return new WaitForSeconds(1);
-        Destroy(gameObject);
     }
 }
