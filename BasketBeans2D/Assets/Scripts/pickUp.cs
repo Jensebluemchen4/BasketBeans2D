@@ -9,6 +9,7 @@ public class PickUp : MonoBehaviour
     public GameObject ball;
     [SerializeField] private Rigidbody2D ballrb;
     [SerializeField] private float maxPickUpDist = 2f;
+    [SerializeField] private float maxAutoDist;
     [SerializeField] private float throwForce = 25f;
     
     
@@ -19,8 +20,8 @@ public class PickUp : MonoBehaviour
 
     private Rigidbody2D player;
     public bool inHand = true;
-    private float distance;
-    public PlayerMovement pm;
+    private float playerDistanceToObject;
+    public Player pm;
     private Vector2 throwPos;
 
 
@@ -33,6 +34,7 @@ public class PickUp : MonoBehaviour
 
     void Update()
     {
+
         throwPos = new Vector2(pm.mousePosition.x, pm.mousePosition.y);
         if (throwPos.magnitude < maxMouseRadius)
         {
@@ -51,19 +53,23 @@ public class PickUp : MonoBehaviour
             //Check Distance between ball and player
             try
             {
-                distance = Vector2.Distance(ball.transform.position, transform.position);
+                playerDistanceToObject = Vector2.Distance(ball.transform.position, transform.position);
+
+                //Check if ball is not in hand and nearby
+                if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == false && playerDistanceToObject < maxPickUpDist)
+                {
+                    Hold();
+                }
+                else if (Input.GetKeyDown(KeyCode.E) && inHand == false)
+                {
+                    Hold();
+                }
+                else if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == true)
+                {
+                    Throw();
+                }
             }
             catch (Exception) { }
-
-            //Check if ball is not in hand and nearby
-            if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == false && distance <= maxPickUpDist)
-            {
-                Hold();
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == true)
-            {
-                Throw();
-            }
         }
     }
 
@@ -92,10 +98,7 @@ public class PickUp : MonoBehaviour
             ball.GetComponent<Rigidbody2D>().isKinematic = false;
             ball.transform.SetParent(null);
             
-
-
             ballrb.AddForce(Vector2.ClampMagnitude((throwPos), maxMouseRadius) * (throwForce - (mouseRadius*2.5f)));
-            //ballrb.AddForce(pm.mousePosition * throwForce / pm.mousePosition.magnitude);
             ballrb.freezeRotation = false;
             inHand = false;
         }

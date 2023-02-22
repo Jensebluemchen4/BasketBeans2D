@@ -245,7 +245,6 @@ GameObject:
   - component: {fileID: 6557988387764834022}
   - component: {fileID: 6557988387764834017}
   - component: {fileID: 6557988387764834016}
-  - component: {fileID: 1952998277}
   m_Layer: 3
   m_Name: Player_Prefab
   m_TagString: Player
@@ -399,7 +398,7 @@ MonoBehaviour:
   ball: {fileID: 0}
   ballrb: {fileID: 0}
   maxPickUpDist: 2
-  throwForce: 32.5
+  throwForce: 50
   maxMouseRadius: 8
   mouseRadius: 0
   inHand: 1
@@ -430,18 +429,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0295377, y: 0.72818947}
   m_EdgeRadius: 0
---- !u!114 &1952998277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6557988387764834027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b4054a4e934644cbdcebc63b436e4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6557988387768526647
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +439,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6557988387768526646}
   - component: {fileID: 6557988387768526641}
-  - component: {fileID: 6557988387768526640}
   m_Layer: 0
   m_Name: PlayerTrigger
   m_TagString: Player
@@ -491,15 +477,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0124258995, y: -0.04970336}
   m_Size: {x: 1.0218849, y: 1.9443629}
   m_Direction: 0
---- !u!114 &6557988387768526640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6557988387768526647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b4054a4e934644cbdcebc63b436e4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

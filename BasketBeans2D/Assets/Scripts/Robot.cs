@@ -8,7 +8,7 @@ public class Robot : MonoBehaviour
     [SerializeField] private float left = 0f;
     [SerializeField] private float right = 0f;
     private Rigidbody2D rob;
-    public PickUp playerHand;
+    private PickUp playerHand;
     public bool alive = true;
     bool lookRight = true;
     float robotStartPosition;

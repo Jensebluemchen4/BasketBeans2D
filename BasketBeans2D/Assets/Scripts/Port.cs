@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Port : MonoBehaviour
 {
     public bool toRemove = false;
-    public PickUp inHand;
     [SerializeField]private int toLoad;
 
 

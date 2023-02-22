@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public float jumpForce;
     private float moveSpeed;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 mousePosition;
     bool lookLeft;
+
 
     void Awake()
     {
@@ -57,6 +59,21 @@ public class PlayerMovement : MonoBehaviour
     {
         mousePosition = Input.mousePosition;
         mousePosition = (Camera.main.ScreenToWorldPoint(mousePosition) - transform.position);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            if (collision.GetComponent<Robot>().alive == true)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
+        else if (collision.CompareTag("Spikes"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     void Flip()
