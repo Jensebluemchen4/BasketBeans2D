@@ -12,6 +12,7 @@ public class Robot : MonoBehaviour
     public bool alive = true;
     bool lookRight = true;
     float robotStartPosition;
+    [SerializeField] private bool indestructable = false;
 
     private void Awake()
     {
@@ -46,11 +47,14 @@ public class Robot : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.CompareTag("Objects") && playerHand.inHand == false) || collision.gameObject.CompareTag("Enemy"))
+        if (indestructable == false)
         {
-            rob.freezeRotation = false;
-            rob.gravityScale = 1.5f;
-            alive = false;
+            if ((collision.gameObject.CompareTag("Objects") && playerHand.inHand == false) || collision.gameObject.CompareTag("Enemy"))
+            {
+                rob.freezeRotation = false;
+                rob.gravityScale = 1.5f;
+                alive = false;
+            }
         }
     }
 

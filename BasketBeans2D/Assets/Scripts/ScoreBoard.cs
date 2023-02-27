@@ -15,6 +15,17 @@ public class ScoreBoard : MonoBehaviour
     [SerializeField] private int toScore;
 
 
+    private void Awake()
+    {
+        if (stageBasket == true)
+        {
+            if (destroy == true)
+                toDestroy.SetActive(true);
+            else
+                toBuild.SetActive(false);
+        }
+    }
+
 
     public void Update()
     {
@@ -34,11 +45,6 @@ public class ScoreBoard : MonoBehaviour
         }
         else if (score.scoreCounter.ToString() != num.text && stageBasket == true)
         {
-            if (destroy == true)
-                toDestroy.SetActive(true);
-            else
-                toBuild.SetActive(false);
-
             if (score.scoreCounter <= 0)
                 num.text = "0/" + toScore.ToString();
             else if (score.scoreCounter > 0 && score.scoreCounter <= toScore)
@@ -50,12 +56,9 @@ public class ScoreBoard : MonoBehaviour
                     toDestroy.SetActive(false);
                 else
                     toBuild.SetActive(true);
-
                 num.color = new Color(0, 100, 0);
                 score.scoreCounter = toScore;
             }
         }
-
-
     }
 }

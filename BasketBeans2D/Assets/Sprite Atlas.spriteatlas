@@ -1261,7 +1261,21 @@ SpriteAtlas:
   - {fileID: 1782050714, guid: 2701d189787fc7147874beaf38ff5b1a, type: 3}
   - {fileID: -1781478598, guid: 2701d189787fc7147874beaf38ff5b1a, type: 3}
   - {fileID: 21300000, guid: c3d400cbbfa1d264bb62fff303992606, type: 3}
-  - {fileID: 21300000, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: 1100875875, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: 349640657, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: 631247907, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: 188479461, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: -239038817, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: 127618721, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: 1405437986, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: 1167107793, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: -1622781959, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: -2061634741, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: -1735260783, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: 227447399, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: -447189506, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: 1386844591, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
+  - {fileID: 200870227, guid: fd5efeac76068f24a9fdcac77a83f6c0, type: 3}
   m_PackedSpriteNamesToIndex:
   - mp_cs_props_55
   - mp_cs_props_52
@@ -2473,7 +2487,21 @@ SpriteAtlas:
   - mp_cs_buildings_181
   - mp_cs_buildings_180
   - mp_cs_shadows
-  - mp_cs_background
+  - mp_cs_background_9
+  - mp_cs_background_8
+  - mp_cs_background_5
+  - mp_cs_background_4
+  - mp_cs_background_7
+  - mp_cs_background_6
+  - mp_cs_background_1
+  - mp_cs_background_0
+  - mp_cs_background_3
+  - mp_cs_background_2
+  - mp_cs_background_14
+  - mp_cs_background_10
+  - mp_cs_background_11
+  - mp_cs_background_12
+  - mp_cs_background_13
   m_RenderDataMap: {}
   m_Tag: Sprite Atlas
   m_IsVariant: 0

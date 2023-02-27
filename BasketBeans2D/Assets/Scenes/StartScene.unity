@@ -10279,10 +10279,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f79313e499dc1454cb265471482c2850, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -20552,6 +20552,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 986639483, guid: 244e075ee1c22ea4e8294db46df36b09, type: 3}
+      propertyPath: parallax
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867448266, guid: 244e075ee1c22ea4e8294db46df36b09, type: 3}
+      propertyPath: parallax
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884756586, guid: 244e075ee1c22ea4e8294db46df36b09, type: 3}
+      propertyPath: parallax
+      value: 0.78
+      objectReference: {fileID: 0}
     - target: {fileID: 147650803761414064, guid: 244e075ee1c22ea4e8294db46df36b09, type: 3}
       propertyPath: toFollow
       value: 
@@ -20788,6 +20800,10 @@ PrefabInstance:
       propertyPath: score
       value: 
       objectReference: {fileID: 801697721}
+    - target: {fileID: 6390390416324326606, guid: 73e52237612eba344be4099bcdc36b2f, type: 3}
+      propertyPath: stageBasket
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6390390416324326607, guid: 73e52237612eba344be4099bcdc36b2f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -20798,7 +20814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6390390416324326607, guid: 73e52237612eba344be4099bcdc36b2f, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6390390416324326607, guid: 73e52237612eba344be4099bcdc36b2f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -20911,7 +20927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6557988387764834023, guid: b9d939f2bb61b16499598ac959f7329e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6557988387764834023, guid: b9d939f2bb61b16499598ac959f7329e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20984,7 +21000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8660180020071165627, guid: 99a8e01014a25ec4d8141eab21e7eb40, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8660180020071165627, guid: 99a8e01014a25ec4d8141eab21e7eb40, type: 3}
       propertyPath: m_LocalPosition.x

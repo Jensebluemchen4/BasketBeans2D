@@ -8,19 +8,16 @@ public class PickUp : MonoBehaviour
     [SerializeField] private Transform hold;
     public GameObject ball;
     [SerializeField] private Rigidbody2D ballrb;
-    [SerializeField] private float maxPickUpDist = 2f;
-    [SerializeField] private float maxAutoDist;
     [SerializeField] private float throwForce = 25f;
-    
-    
-    
     [SerializeField] private float maxMouseRadius = 10f;
+    [SerializeField] private float maxAutoPickUpDist = 20f;
+    [SerializeField] private float playerDistanceToObject;
     public float mouseRadius;
 
 
     private Rigidbody2D player;
     public bool inHand = true;
-    private float playerDistanceToObject;
+    public bool isTeleporting = false;
     public Player pm;
     private Vector2 throwPos;
 
@@ -30,10 +27,15 @@ public class PickUp : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         if (inHand)
         Hold();
+        ball.transform.position = hold.position;
     }
 
     void Update()
     {
+        if (isTeleporting == true)
+        {
+            Teleport();
+        }
 
         throwPos = new Vector2(pm.mousePosition.x, pm.mousePosition.y);
         if (throwPos.magnitude < maxMouseRadius)
@@ -54,18 +56,18 @@ public class PickUp : MonoBehaviour
             try
             {
                 playerDistanceToObject = Vector2.Distance(ball.transform.position, transform.position);
-
                 //Check if ball is not in hand and nearby
-                if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == false && playerDistanceToObject < maxPickUpDist)
+                if (inHand == false && playerDistanceToObject > maxAutoPickUpDist && isTeleporting == false)
                 {
-                    Hold();
+                    isTeleporting = true;
                 }
-                else if (Input.GetKeyDown(KeyCode.E) && inHand == false)
+                else if (Input.GetKeyDown(KeyCode.Mouse1) && inHand == false && isTeleporting == false)
                 {
-                    Hold();
+                    isTeleporting = true;
                 }
-                else if (Input.GetKeyDown(KeyCode.Mouse0) && inHand == true)
+                else if (Input.GetKeyDown(KeyCode.Mouse0) && isTeleporting == false && inHand == true)
                 {
+                    ball.GetComponent<Collider2D>().enabled = true;
                     Throw();
                 }
             }
@@ -78,16 +80,31 @@ public class PickUp : MonoBehaviour
     {
         try
         {
+            ball.transform.SetParent(transform);
+            inHand = true;
+            ballrb.freezeRotation = true;
+            inHand = true;
             ball.GetComponent<Rigidbody2D>().isKinematic = true;
             ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             ball.isStatic = true;
             //Move object to transform of object "hold" and set player to Parent
-            ball.transform.position = hold.position;
-            ball.transform.SetParent(transform);
-            ballrb.freezeRotation = true;
-            inHand = true;
+            //ball.transform.position = hold.position;
+
+            //if (ball.transform.position != hold.position)
+            //Teleport();
         }
         catch (Exception) { }
+    }
+
+    void Teleport()
+    {
+        if(Vector3.Distance(ball.transform.position, hold.position) < 0.1f)
+        {
+            isTeleporting = false;
+            Hold();
+        }
+        ball.GetComponent<Collider2D>().enabled = false;
+        ball.transform.position = Vector3.MoveTowards(ball.transform.position, hold.position, 30 * Time.deltaTime);
     }
 
     //Method to throw ball
@@ -98,7 +115,7 @@ public class PickUp : MonoBehaviour
             ball.GetComponent<Rigidbody2D>().isKinematic = false;
             ball.transform.SetParent(null);
             
-            ballrb.AddForce(Vector2.ClampMagnitude((throwPos), maxMouseRadius) * (throwForce - (mouseRadius*2.5f)));
+            ballrb.AddForce(Vector2.ClampMagnitude((throwPos + player.velocity / 4.5f), maxMouseRadius) * (throwForce - (mouseRadius*2.5f)));
             ballrb.freezeRotation = false;
             inHand = false;
         }
