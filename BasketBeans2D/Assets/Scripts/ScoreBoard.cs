@@ -33,14 +33,14 @@ public class ScoreBoard : MonoBehaviour
     {
         if (score.scoreCounter.ToString() != num.text && stageBasket == false)
         {
-            if (score.scoreCounter > 99)
-                num.text = score.scoreCounter.ToString();
-            else if (score.scoreCounter > 9)
-                num.text = "0" + score.scoreCounter.ToString();
-            else if (score.scoreCounter <= 9)
-                num.text = "00" + score.scoreCounter.ToString();
-            else if (score.scoreCounter == 0)
-                num.text = "000" + score.scoreCounter.ToString();
+            if (Basket.totalScoreCounter > 99)
+                num.text = Basket.totalScoreCounter.ToString();
+            else if (Basket.totalScoreCounter > 9)
+                num.text = "0" + Basket.totalScoreCounter.ToString();
+            else if (Basket.totalScoreCounter <= 9)
+                num.text = "00" + Basket.totalScoreCounter.ToString();
+            else if (Basket.totalScoreCounter == 0)
+                num.text = "000" + Basket.totalScoreCounter.ToString();
 
             if (score.scoreCounter >= 1000)
                 score.scoreCounter = 0;

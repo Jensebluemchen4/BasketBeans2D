@@ -7,6 +7,7 @@ public class Basket : MonoBehaviour
 {
     [SerializeField] public Rigidbody2D ball;
     public int scoreCounter;
+    public static int totalScoreCounter;
     private bool hitFromTop;
 
     private void Awake()
@@ -20,14 +21,13 @@ public class Basket : MonoBehaviour
 
     public void SaveScore()
     {
-        SaveLoadSystem.SaveData(this);
+        SaveLoadSystem.SaveData();
     }
 
     public void LoadScore()
     {
         GameData data = SaveLoadSystem.LoadData();
-
-        scoreCounter = data.scoreCounter;
+        totalScoreCounter = data.totalScoreCounter;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,6 +43,7 @@ public class Basket : MonoBehaviour
         if (ball.velocity.y < 0 && hitFromTop == true)
         {
             scoreCounter++;
+            totalScoreCounter++;
             SaveScore();
         }
         hitFromTop = false;

@@ -10946,7 +10946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6390390416324326608, guid: 73e52237612eba344be4099bcdc36b2f, type: 3}
       propertyPath: m_text
-      value: 'Space
+      value: 'Hold Space
 
         A / D
 
@@ -10966,7 +10966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6390390416324326608, guid: 73e52237612eba344be4099bcdc36b2f, type: 3}
       propertyPath: m_margin.x
-      value: 9.202061
+      value: 9.148928
       objectReference: {fileID: 0}
     - target: {fileID: 6390390416324326608, guid: 73e52237612eba344be4099bcdc36b2f, type: 3}
       propertyPath: m_margin.y
@@ -11123,7 +11123,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8660180020807188779, guid: 99a8e01014a25ec4d8141eab21e7eb40, type: 3}
   m_PrefabInstance: {fileID: 6713691259547588924}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1272092666}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e44ae08c9de6734cb720f63e4c977d0, type: 3}
@@ -17954,6 +17954,23 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1272092666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8660180020807188773, guid: 99a8e01014a25ec4d8141eab21e7eb40, type: 3}
+  m_PrefabInstance: {fileID: 6713691259547588924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1272092669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272092666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca4ba8fff62fe1488357271d8efc11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1287860954 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6557988387764834023, guid: b9d939f2bb61b16499598ac959f7329e, type: 3}

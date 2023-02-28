@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
 
 
 
-
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

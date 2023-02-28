@@ -7,14 +7,14 @@ using UnityEngine;
 public static class SaveLoadSystem
 {
 
-    public static void SaveData (Basket basket)
+    public static void SaveData ()
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/gameData.sae";
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        GameData data = new GameData(basket);
+        GameData data = new GameData();
 
         formatter.Serialize(stream, data);
         stream.Close();

@@ -6,10 +6,10 @@ using UnityEngine;
 [Serializable]
 public class GameData
 {
-    public int scoreCounter;
+    public int totalScoreCounter;
 
-    public GameData (Basket basket)
+    public GameData ()
     {
-        scoreCounter = basket.scoreCounter;
+        totalScoreCounter = Basket.totalScoreCounter;
     }
 }
