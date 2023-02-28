@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    private Vector3 offset = new Vector3(0f, 2.2f, -10f);
+    public float offsetY = 2.2f;
+    private Vector3 offset;
     private Vector3 velocity = Vector3.zero;
     private Vector3 toFollowPos;
     private float smoothness = 0.08f;
@@ -12,6 +13,12 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float lockPos;
     [SerializeField] private bool lockX = false;
     [SerializeField] private bool lockY = false;
+
+
+    private void Awake()
+    {
+        offset = new Vector3(0f, offsetY, -10f);
+    }
 
     private void LateUpdate()
     {

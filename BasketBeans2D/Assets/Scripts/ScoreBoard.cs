@@ -17,8 +17,10 @@ public class ScoreBoard : MonoBehaviour
 
     private void Awake()
     {
+
         if (stageBasket == true)
         {
+            score.scoreCounter = 0;
             if (destroy == true)
                 toDestroy.SetActive(true);
             else

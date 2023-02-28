@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     bool lookLeft;
 
 
+
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Basket : MonoBehaviour
 {
@@ -10,8 +11,23 @@ public class Basket : MonoBehaviour
 
     private void Awake()
     {
-        scoreCounter = 0;
         ball.GetComponent<GameObject>();
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            LoadScore();
+        }
+    }
+
+    public void SaveScore()
+    {
+        SaveLoadSystem.SaveData(this);
+    }
+
+    public void LoadScore()
+    {
+        GameData data = SaveLoadSystem.LoadData();
+
+        scoreCounter = data.scoreCounter;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,6 +43,7 @@ public class Basket : MonoBehaviour
         if (ball.velocity.y < 0 && hitFromTop == true)
         {
             scoreCounter++;
+            SaveScore();
         }
         hitFromTop = false;
     }
